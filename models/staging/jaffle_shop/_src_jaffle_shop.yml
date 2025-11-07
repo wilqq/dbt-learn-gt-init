@@ -1,15 +1,24 @@
 sources:
   - name: jaffle_shop
+    description: A clone of a Postgress DB
     database: raw
     schema: jaffle_shop
     tables:
       - name: customers
+        description: Raw customers data
+        columns:
+          - name: id
+            description: Primary Key
+            data_tests:
+              - unique
+              - not_null
+
       - name: orders
-        # config:
-        #   freshness:
-        #     warn_after:
-        #       count: 24
-        #       period: hour
-        #     error_after:
-        #       count: 48
-        #       period: hour
+        config:
+          freshness:
+            warn_after:
+              count: 24
+              period: hour
+            error_after:
+              count: 48
+              period: hour
